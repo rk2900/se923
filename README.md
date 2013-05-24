@@ -1,4 +1,17 @@
-CMS管理系统
+CMS管理系统-软工923项目
+
+[ 命令行使用指南 ]
+
+    1 cd WebSites/                                      #进入本机需要存放网页文件的目录
+    2 git clone https://github.com/rk2900/se923.git     #自动在当前目录建立文件夹存放这些文件
+    4 git pull                                          #每次自己提交代码、写代码前需要pull 把别人的修改应用到本地
+    3 git status                                        #查看修改或添加的文件列表
+    4 git commit                                        #保存修改节点，-a 添加原先没有的文件 -m 将修改过的文件git 
+                                                            例如：git commit -am "First Edit Comments" 表示添加、修改文件到git，引号
+                                                            里是随便加的给协同开发者看的东西
+    5 git push                                          #最终确定提交代码，例如：git push origin master
+                                                            即可上传到origin服务器的master主干目录
+
 ======
 
 [ 介绍 ]
@@ -8,10 +21,11 @@ CMS管理系统
 
 [ 安装方法 ]
 
-    1 创建MYSQL数据库，导入 cms.sql
-    2 根据你的数据库，配置config.php “db_host db_name db_user db_pwd db_port”
+    1 创建MYSQL数据库，导入 cms.sql 注意新建一个数据库schema，后面要用
+    2 根据你的数据库，配置config.php “db_host db_name db_user db_pwd db_port” 
+    2 host写你本机localhost 数据库名 数据库用户名 数据库密码 数据库端口，依次填好
 	3 后台入口 /admin
-	4 后台帐号密码 admin admin
+	4 后台帐号密码 admin admin 数据库配置错误会报错返回
 
 [ 目录结构 ]
 
