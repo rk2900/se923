@@ -7,8 +7,8 @@ CMS管理系统-软工923项目
     4 git pull                                          #每次自己提交代码、写代码前需要pull 把别人的修改应用到本地
     3 git status                                        #查看修改或添加的文件列表
     4 git commit                                        #保存修改节点，-a 添加原先没有的文件 -m 将修改过的文件git 
-                                                            例如：git commit -am "First Edit Comments" 表示添加、修改文件到git，引号
-                                                            里是随便加的给协同开发者看的东西
+                                                            例如：git commit -am "First Edit Comments" 表示添加、修改文件到git，
+                                                            引号里是随便加的给协同开发者看的东西
     5 git push                                          #最终确定提交代码，例如：git push origin master
                                                             即可上传到origin服务器的master主干目录
 
