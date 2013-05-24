@@ -1,0 +1,14 @@
+# Config File
+/Conf/config.php
+
+# Cache & Temp Files
+/Temp/*/*
+~*
+*.bak
+*.cmp
+*.old
+*.tmp
+*sublime*
+
+# Exclude Fix
+!index.html
