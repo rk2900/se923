@@ -1,5 +1,6 @@
 # Config File
 /Conf/config.php
+/config.php
 
 # Cache & Temp Files
 /Temp/*/*
