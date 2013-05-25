@@ -1,14 +1,14 @@
 <?php
 return array (
   'db_type' => 'mysql',
-  'db_host' => '127.0.0.1',
-  'db_name' => 'test',
+  'db_host' => 'localhost',
+  'db_name' => 'onlinepayment',
   'db_user' => 'root',
-  'db_pwd' => '',
+  'db_pwd' => '62771115xbb',
   'db_port' => 3306,
   'db_prefix' => 'tp_',
   'web_name' => 'CMS网',
-  'web_url' => 'http://localhost/se/admin/',
+  'web_url' => 'http://localhost/~dirk/onlinepayment/se923/admin/',
   'web_path' => '/',
   'web_icp' => '粤ICP备000000号',
   'CRON_MAX_TIME' => 60,
