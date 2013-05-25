@@ -1,5 +1,5 @@
 <?php 
-class listModel extends Model {
+class ListModel extends Model {
 
 	//自动完成
 	protected $_auto = array ( 
