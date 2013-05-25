@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 25, 2013 at 04:23 PM
+-- Generation Time: May 25, 2013 at 10:22 PM
 -- Server version: 5.6.10
 -- PHP Version: 5.3.15
 
@@ -131,15 +131,15 @@ CREATE TABLE IF NOT EXISTS `tp_blacklist` (
   `last_location` varchar(100) DEFAULT NULL COMMENT '最后登录位置',
   PRIMARY KEY (`id`),
   KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='黑名单表' AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='黑名单表' AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `tp_blacklist`
 --
 
 INSERT INTO `tp_blacklist` (`id`, `username`, `password`, `role`, `status`, `remark`, `last_login_time`, `last_login_ip`, `last_location`) VALUES
-(1, 'dirk', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '神级管理员,可无视系统权限.', 1357142930, '127.0.0.1', '本机地址'),
-(3, 'rk', '5aee9dbd2a188839105073571bee1b1f', 2, 1, '', 1356967653, '127.0.0.1', '');
+(11, 'meimei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '圆得要死', 1357142930, '127.0.0.1', '本机地址'),
+(13, 'yaya', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '和郑神是绝配', 1356967653, '127.0.0.1', '');
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `tp_node` (
   KEY `pid` (`pid`),
   KEY `status` (`status`),
   KEY `name` (`name`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=56 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=57 ;
 
 --
 -- Dumping data for table `tp_node`
@@ -211,9 +211,10 @@ INSERT INTO `tp_node` (`id`, `name`, `title`, `status`, `remark`, `pid`, `level`
 (49, 'confweb', '网站信息设置', 1, '', 46, 0, '?s=/Admin/Config/conf/id/web', 0, 2),
 (50, 'updatedb', '更新数据库链接配置', 1, '', 46, 3, '', 0, 0),
 (51, 'confdb', '数据库链接配置', 1, '', 46, 0, '?s=/Admin/Config/conf/id/db', 0, 2),
-(53, 'blacklist_manager', '黑名单管理', 1, '', 1, 0, '', 0, 1),
-(54, 'Blacklist', '黑名单管理', 1, '', 53, 2, '', 0, 2),
-(55, 'index', '黑名单管理', 1, '', 54, 3, '?s=/Admin/Blacklist/index', 0, 2);
+(53, 'list_manager', '名单管理', 1, '', 1, 0, '', 0, 1),
+(54, 'List', '名单管理', 1, '', 53, 2, '', 0, 2),
+(55, 'index', 'VIP名单管理', 1, '', 54, 3, '?s=/Admin/List/index', 0, 2),
+(56, 'blacklist', '黑名单管理', 1, '', 54, 3, '?s=/Admin/List/blacklist', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -287,8 +288,37 @@ CREATE TABLE IF NOT EXISTS `tp_user` (
 --
 
 INSERT INTO `tp_user` (`id`, `username`, `password`, `role`, `status`, `remark`, `last_login_time`, `last_login_ip`, `last_location`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '神级管理员,可无视系统权限.', 1369462550, '0.0.0.0', 'IANA保留地址'),
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '神级管理员,可无视系统权限.', 1369484493, '0.0.0.0', 'IANA保留地址'),
 (3, 'editor', '5aee9dbd2a188839105073571bee1b1f', 2, 1, '', 1356967653, '127.0.0.1', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tp_viplist`
+--
+
+CREATE TABLE IF NOT EXISTS `tp_viplist` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `password` char(32) NOT NULL,
+  `role` smallint(6) unsigned NOT NULL COMMENT '组ID',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '状态 1:启用 0:禁止',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注说明',
+  `last_login_time` int(11) unsigned NOT NULL COMMENT '最后登录时间',
+  `last_login_ip` varchar(15) DEFAULT NULL COMMENT '最后登录IP',
+  `last_location` varchar(100) DEFAULT NULL COMMENT '最后登录位置',
+  PRIMARY KEY (`id`),
+  KEY `username` (`username`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='VIP表' AUTO_INCREMENT=102 ;
+
+--
+-- Dumping data for table `tp_viplist`
+--
+
+INSERT INTO `tp_viplist` (`id`, `username`, `password`, `role`, `status`, `remark`, `last_login_time`, `last_login_ip`, `last_location`) VALUES
+(10, 'leilei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '胖，圆', 1357142930, '127.0.0.1', ''),
+(12, 'yaya', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦', 1356967653, '127.0.0.1', ''),
+(15, 'yingying', 'e10adc3949ba59abbe56e057f20f883e', 4, 1, '胖胖胖', 1366967653, '127.0.0.1', '我不知道啊');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
