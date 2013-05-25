@@ -10,6 +10,7 @@
 *.old
 *.tmp
 *sublime*
+*.DS_*
 
 # Exclude Fix
 !index.html
