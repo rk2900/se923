@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>申诉管理-{$Think.config.cms_name}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/function.js"></script>
+	<style>td{ height:22px; line-height:22px}</style>
+</head>
+<body>
+	<table width="98%" border="0" cellpadding="9" cellspacing="1" class="table">
+		<tr>
+			<td colspan="9" class="table_title">
+				<span class="fl">申诉处理</span>
+				
+			</td>
+			<tr class="list_head ct">
+				<td width="70">ID</td> 
+				<td width="150">用户名称</td>
+				<td width="150">认证名字</td>
+				<td width="150">身份证号码</td>
+				<td width="150">联系电话</td>
+				<td >申诉描述</td>
+				<td width="70">状态</td>
+				<td width="70">是否已处理</td>
+				<td width="100">管理操作</td>
+			</tr>
+	    <volist name="list" id="vo">
+			<tr class='<eq name="mod" value="1">tr<else/>ji</eq>'>
+				<td align='center'>{$vo.id}</td>
+				<td >{$vo.username}</td>
+				<td >{$vo.authname}</td>
+				<td >{$vo.id_number}</td>
+				<td align='center'>{$vo.phone_number}</td>
+				<td >{$vo.remark}</td>
+				
+				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				</td>
+				<td align='center'><eq name="vo.pass" value="0"><font color="blue">√</font><else/><font color="red">×</font></eq> 
+				<td align='center'>
+					<eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">通过</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Authappeal/appeal_pass/',array('id'=>$vo['id']))}','确定通过该申诉消息吗?')">通过</a></eq>
+					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Authappeal/appeal_del/',array('id'=>$vo['id']))}','确定删除该申诉信息吗?')">删除</a></eq>
+				</td>
+			</tr>
+	    </volist>
+		<tr class="tr">
+          <td colspan="9" class="pages">
+            {$page}
+          </td>
+        </tr>
+		</table>
+		<script>var version='{$Think.config.cms_var}';</script>
+		<include file="Index:footer" />
+</body>
+	</html>
