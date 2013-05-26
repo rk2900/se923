@@ -37,27 +37,34 @@ if(self!=top){
     <form action="{:U('Admin/Login/checkLogin')}" method="post" name="cms" onSubmit="return loginok(this)">
       <div class="inputbox">
         <dl>
-          <dd>{$Think.lang.lan_username}：</dd>
-          <dd>
-            <input type="text" name="username" id="login_name" size="15" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
-          </dd>
-          <dd>{$Think.lang.lan_password}：</dd>
-          <dd>
-            <input type="password" name="password" id="login_pwd" size="15" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
-          </dd>
-          <dd>{$Think.lang.lan_verify}：</dd>
-          <dd>
-            <input type="text" name="verify" id="verify" size="3" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
-            <img id="verifyImg" SRC="{:U('Admin/Public/verify')}" onclick='this.src=this.src+"&"+Math.random()' BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle">
-          </dd>
-          <dd>
-            <input name="submit" type="submit" value="" class="input" />
-          </dd>
+
+        <dd>
+          <label class="input_cue">{$Think.lang.lan_username}：</label>
+          <input class="input_common" type="text" name="username" id="login_name" size="15" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
+
+        </dd>
+
+        <dd>
+          <label class="input_cue">{$Think.lang.lan_password}：</label>
+          <input class="input_common" type="password" name="password" id="login_pwd" size="15" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
+        </dd>
+
+        <dd>
+          <label class="input_cue">{$Think.lang.lan_verify}：</label>
+          <input class="input_verify" type="text" name="verify" id="verify" size="3" onfocus="this.style.borderColor='#fc9938'" onblur="this.style.borderColor='#dcdcdc'" />
+
+          <img id="verifyImg" SRC="{:U('Admin/Public/verify')}" onclick='this.src=this.src+"&"+Math.random()' BORDER="0" ALT="点击刷新验证码" style="cursor:pointer" align="absmiddle">
+        </dd>
+        
+        <dd>
+          <input name="submit" type="submit" value="" class="submit_btn" />
+        </dd>
+
         </dl>
       </div>
-      <div class="butbox">
+      <div class="btnbox">
         <dl>
-          <dd>{$Think.config.cms_name}是一个采用PHP和MYSQL数据库构建的高效的管理系统</dd>
+          <dd>{$Think.config.cms_name}是一个采用PHP和MySQL数据库构建的高效的管理系统</dd>
         </dl>
       </div>
       <div style="clear:both"></div>

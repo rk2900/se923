@@ -1,0 +1,19 @@
+﻿05.26.22.20
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   Core/Conf/Admin/config.php
+#	modified:   Public/Admin/css/admin_login.css
+#	renamed:    Public/Admin/images/admin/admin_logo.png -> "Public/Admin/images/admin/admin_logo - \345\211\257\346\234\254.png"
+#	modified:   Public/Admin/images/admin/admin_logo.png
+#	renamed:    Public/Admin/images/admin/login_toptitle.png -> "Public/Admin/images/admin/login_toptitle - \345\211\257\346\234\254.png"
+#	modified:   Public/Admin/images/admin/login_toptitle.png
+#	modified:   Template/Admin/default/Index_footer.html
+#	modified:   Template/Admin/default/Index_index.html
+#	modified:   Template/Admin/default/Login_index.html
+#	modified:   Template/Home/default/Index_index.html
+#
+

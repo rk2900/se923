@@ -5,7 +5,7 @@
 }
 body {
 	margin: 0px;
-	font-size:12px;
+	font-size:15px;
 	color: #888;
 }
 input {
@@ -19,32 +19,33 @@ a {
 	color:#2366A8;
 	text-decoration: none;
 }
+
 a:hover {
 	color:#2366A8;
-	text-decoration:underline;
+	text-decoration: underline;
 }
+
 .main {
 	width:640px;
-	background:#FFF;
 	padding-bottom:10px;
 	margin-top: 120px;
-	margin-right: auto;
 	margin-bottom: 0px;
 	margin-left: auto;
+	margin-right: auto;
 }
+
 .main .title {
-	width:600px;
+	width:630px;
 	height:80px;
-	text-indent:326px;
-	letter-spacing:2px;
 	background-image: url(../images/admin/login_toptitle.png);
 	background-repeat: no-repeat;
 	background-position: center center;
 	margin-top: 0px;
-	margin-right: auto;
 	margin-bottom: 0px;
 	margin-left: auto;
+	margin-right: auto;
 }
+
 .main .login {
 	width:630px;
 	overflow:hidden;
@@ -52,45 +53,64 @@ a:hover {
 	background-repeat: no-repeat;
 	background-position: center top;
 	margin-top: 10px;
-	margin-right: auto;
 	margin-bottom: 0px;
 	margin-left: auto;
+	margin-right: auto;
 	padding-top: 20px;
 }
+
 .main .login .inputbox {
-	height: 50px;
-	padding-left: 20px;
+	height: 200px;
+	width: 280px;
+	margin-left:auto;
+	margin-right:auto;
 }
+
 .main .login .inputbox dl {
-	height:28px;
-	float: left;
+	height:60px;
+	text-align:center;
 }
-.main .login .inputbox dl dt {
-	float:left;
-	height:25px;
-	line-height:25px;
-	text-align:right;
-	padding-right: 3px;
-	padding-left: 3px;
-}
+
 .main .login .inputbox dl dd {
-	float:left;
-	padding-right: 3px;
-	padding-left: 3px;
-	line-height: 25px;
-	height: 25px;
+	line-height:20px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	position: relative;
 }
+
+.main .login .inputbox dl dd img {
+	position: absolute;
+	right: -22px;
+}
+
+.main .login .inputbox .input_cue {
+	width:60px;
+	float:left;
+}
+
 .main .login .inputbox dl dd input {
-	font-size:12px;
+	width:120px;
 	border:1px solid #dcdcdc;
 	background:url(../images/admin/login_input_bg.gif) left top no-repeat;
-	height: 18px;
-	line-height: 18px;
+	height: 20px;
+	line-height: 20px;
 	padding-right: 2px;
 	padding-left: 2px;
 }
-.main .login .inputbox dl .input {
-	width:64px;
+
+/*
+.main .login .inputbox .input_common {
+	width:120px;
+}
+
+.main .login .inputbox .input_verify {
+
+	width:60px;
+}
+*/
+
+.main .login .inputbox dl .submit_btn {
+	width:60px;
 	height:24px;
 	border:none;
 	cursor:pointer;
@@ -98,14 +118,15 @@ a:hover {
 	background-image: url(../images/admin/login_submit.gif);
 	background-repeat: no-repeat;
 }
-.main .login .butbox {
+
+.main .login .btnbox {
 }
-.main .login .butbox dl {
+.main .login .btnbox dl {
 }
-.main .login .butbox dl dt {
+.main .login .btnbox dl dt {
 	height:30px;
 }
-.main .login .butbox dl dd {
+.main .login .btnbox dl dd {
 	height:21px;
 	line-height:21px;
 	text-align: center;

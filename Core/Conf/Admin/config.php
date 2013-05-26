@@ -19,8 +19,6 @@ return array (
   'RBAC_ACCESS_TABLE' => 'tp_access',
   'RBAC_NODE_TABLE' => 'tp_node',
   'SPECIAL_USER' => 'admin',
-  'cms_name' => '管理系统',
-  'cms_url' => 'http://www.cms.com',
   'cms_var' => '1.0.2',
   'cms_admin' => 'index.php',
 );
