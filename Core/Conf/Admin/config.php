@@ -19,7 +19,5 @@ return array (
   'RBAC_ACCESS_TABLE' => 'tp_access',
   'RBAC_NODE_TABLE' => 'tp_node',
   'SPECIAL_USER' => 'admin',
-  'cms_var' => '1.0.2',
-  'cms_admin' => 'index.php',
 );
 ?>
