@@ -1,25 +1,31 @@
-/*
- Navicat MySQL Data Transfer
+-- phpMyAdmin SQL Dump
+-- version 3.3.7
+-- http://www.phpmyadmin.net
+--
+-- 主机: localhost
+-- 生成日期: 2013 年 05 月 26 日 14:46
+-- 服务器版本: 5.1.50
+-- PHP 版本: 5.2.14
 
- Source Server         : local
- Source Server Version : 50611
- Source Host           : localhost
- Source Database       : test
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
- Target Server Version : 50611
- File Encoding         : utf-8
 
- Date: 05/26/2013 19:10:54 PM
-*/
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
-SET NAMES utf8;
-SET FOREIGN_KEY_CHECKS = 0;
+--
+-- 数据库: `onlinepayment`
+--
 
--- ----------------------------
---  Table structure for `tp_deal`
--- ----------------------------
-DROP TABLE IF EXISTS `tp_deal`;
-CREATE TABLE `tp_deal` (
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `tp_deal`
+--
+
+CREATE TABLE IF NOT EXISTS `tp_deal` (
   `deal_id` int(11) NOT NULL AUTO_INCREMENT,
   `buyer` int(11) NOT NULL,
   `seller` int(11) NOT NULL,
@@ -27,13 +33,11 @@ CREATE TABLE `tp_deal` (
   `status` int(11) NOT NULL DEFAULT '0',
   `about` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'hehe',
   PRIMARY KEY (`deal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
--- ----------------------------
---  Records of `tp_deal`
--- ----------------------------
-BEGIN;
-INSERT INTO `tp_deal` VALUES ('2', '3', '1', '1369534785', '1', '这里需要把买家和卖家设定为可跳转链接，同时状态参数需要丰富一下。');
-COMMIT;
+--
+-- 转存表中的数据 `tp_deal`
+--
 
-SET FOREIGN_KEY_CHECKS = 1;
+INSERT INTO `tp_deal` (`deal_id`, `buyer`, `seller`, `time`, `status`, `about`) VALUES
+(2, 3, 1, '1369534785', 1, '这里需要把买家和卖家设定为可跳转链接，同时状态参数需要丰富一下。');
