@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>后台交易记录管理-{$Think.config.cms_name}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
+	<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/function.js"></script>
+	<style>td{ height:22px; line-height:22px}</style>
+</head>
+<body>
+	<table width="98%" border="0" cellpadding="9" cellspacing="1" class="table">
+		<tr>
+			<td colspan="9" class="table_title">
+				<span class="fl">后台交易记录管理</span>
+				<!-- <span class="fr">
+					<a href="{:U('/Admin/User/add')}">添加用户</a>
+				</span> -->
+			</td>
+			<tr class="list_head ct">
+				<td width="70">ID</td>
+				<td width="150">买家</td>
+				<td width="150">卖家</td>
+				<td >交易描述</td>
+				<!-- <td width="100">最后登录IP</td> -->
+				<!-- <td width="150">最后登录位置</td> -->
+				<td width="150">交易时间</td>
+				<td width="70">状态</td>
+				<td width="100">管理操作</td>
+			</tr>
+	    <volist name="list" id="vo">
+			<tr class='<eq name="mod" value="1">tr<else/>ji</eq>'>
+				<td align='center'>{$vo.deal_id}</td>
+				<td >{$vo.buyer}</td>
+				
+				<!-- <td >
+					<a href=":U('/Admin/User/edit/',array())">{$vo.buyer}</a>
+				</td> -->
+				<td >{$vo.seller}</td>
+				<td >{$vo.about}</td>
+				<!-- <td align='center'>{$vo.last_login_ip}</td> -->
+				<!-- <td align='center'>{$vo.last_location}</td> -->
+				<td align='center'>{:get_color_date('Y-m-d H:i:s', $vo['time'])}</td>
+				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				</td>
+				<td align='center'>
+					<a href="{:U('/Admin/Deal/readDetail/',array('id'=>$vo['deal_id']))}">修改</a>
+					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Deal/del/',array('deal_id'=>$vo['deal_id']))}','确定删除该记录吗?')">删除</a></eq>
+				</td>
+			</tr>
+	    </volist>
+		<tr class="tr">
+          <td colspan="9" class="pages">
+            {$page}
+          </td>
+        </tr>
+		</table>
+		<script>var version='{$Think.config.cms_var}';</script>
+		<include file="Index:footer" />
+</body>
+	</html>
