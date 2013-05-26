@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$tpltitle}后台用户</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
+
+</head>
+<body>
+		<gt name="info.id" value="0">
+			<form action="{:U('/Admin/User/edit')}" method="post" name="form" id="myform">
+			<input type="hidden" name="id" value="{$info.id}">
+		<else />
+			<form action="{:U('/Admin/User/add')}" method="post" name="form" id="myform">
+		</gt>
+			<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+
+				<tr class="table_title">
+					<td colspan="4">{$tpltitle}交易记录</td>
+				</tr>
+
+				<tr class="tr rt">
+					<td width="100">交易ID：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="username" id="username" style="width:200px" value="{$info.deal_id}" <eq name="info.username" value="$Think.config.SPECIAL_USER">readonly="readonly"</eq>>
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td width="100">买   家：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="buyer" id="buyer" style="width:200px" value="{$info.buyer}">
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td width="100">卖    家：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="seller" id="seller" style="width:200px" value="{$info.seller}">
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td width="100">交易时间</td>
+					<td colspan="3" class="lt">
+						<!-- <select name="role">
+							<volist name="role" id="vo">
+								<option value="{$vo.id}" <eq name="vo.id" value="$info.role">selected=""</eq> >{$vo.name}</option>
+							</volist>
+						</select> -->
+						<input type="text" name="seller" id="seller" style="width:200px" value={:get_color_date('Y-m-d H:i:s', $info['time'])}>
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td >交易状态：</td>
+					<td colspan="3" class="lt">
+						<input type="radio" class="radio" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
+							完成
+							<input type="radio" class="radio" value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
+							未完成
+							<input type="radio" class="radio" value="1" name="status" id="status1" <if condition="($info.status eq 2) ">checked=""</if> >
+							申诉
+					</td>
+				</tr>
+				<tr class="tr rt">
+					<td >备注说明：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="remark" id="remark" style="width:400px" value="{$info.about}">
+					</td>
+				</tr>
+	<tr class="tr lt">
+		<td colspan="4">
+			<!-- <gt name="info.id" value="0">
+				<input class="bginput" type="submit" name="dosubmit" value="修 改" >
+				<else />
+				<input class="bginput" type="submit" name="dosubmit" value="添 加"></gt>
+			&nbsp; -->
+			<input class="bginput" type="button" onclick="javascript:history.back(-1);" value="返 回" ></td>
+	</tr>
+</table>
+</form>
+<include file="Index:footer" />
+</body>
+</html>
