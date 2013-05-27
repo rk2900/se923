@@ -24,88 +24,90 @@ a:hover{
 }
 
 /*---- Top Nav --------------*/
-.topnav{
+.topNav{
 	width:100%;
-	height:76px;
+	height:100px;
 	background:url(../images/admin/admin_logo.png) left top no-repeat;
 	text-align:right;
 	overflow:hidden;
 	float:right;
 }
-.sitenav{
+.siteNav{
 	float:right;
-	line-height:31px;
-	margin-top:5px;
+	line-height:50px;
+	margin-top:10px;
 	clear:both;
 	margin-right:10px;
 }
-.sitenav .welcome{
+.siteNav .welcome{
 	float:left;
 	color:#333333;
 	margin-right:50px;
 }
-.sitenav .welcome a{
+.siteNav .welcome a{
 	display:block;
 	margin-top:8px;
 	float:left;
 	margin-right:4px;
 }
-.sitenav .welcome .username{
+.siteNav .welcome .username{
 	color:#006699;
 	font-weight:bold;
 }
-.sitenav .sitelink{
+.siteNav .sitelink{
 	float:left;
 	padding-left:10px;
 	color:#d6e1ef;
 	padding-right: 10px;
 }
-.sitenav .sitelink a{
+.siteNav .sitelink a{
 	color:#333;
 	margin:5px;
 	text-decoration: none;
 }
-.sitenav .sitelink a:hover{
+.siteNav .sitelink a:hover{
 	color:#006699;
 	text-decoration:underline;
 }
 
-.leftnav{
+.adminNav{
 	display:block;
 	clear:both;
-	float:right;
+	float:left;
 	margin-top:10px;
-	height:30px;
+	/*height:30px;*/
 	width:100%;
 }
-.leftnav ul{
-	height:30px;
+.adminNav ul{
+	/*height:70px;*/
 	list-style:none;
 	display:block;
-	float:right;
-	margin-right:4px;
+	float:left;
+	margin-left:4px;
 	background-image: url(../images/admin/top_nav_bg.jpg);
 	background-repeat: repeat-x;
 	background-position: left bottom;
 }
-.leftnav ul li.navleft{
+
+.adminNav ul li.navBorder{
 	width:10px;
 	height:30px;
 	background-image: url(../images/admin/top_nav_left.jpg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 }
-.leftnav ul li.navright{
-	width:10px;
-	height:30px;
-	background-image: url(../images/admin/top_nav_right.jpg);
-	background-repeat: no-repeat;
-	background-position: right bottom;
+
+.adminNav ul li.navBorderLeft{
+	background-image: url(../images/admin/top_nav_left.jpg);
 }
-.leftnav ul li{
+.adminNav ul li.navBorderRight{
+	background-image: url(../images/admin/top_nav_right.jpg);
+}
+
+.adminNav ul li{
 	float:left;
 }
-.leftnav ul li a{
+.adminNav ul li a{
 	display:block;
 	line-height:28px;
 	color:#006699;
@@ -117,7 +119,7 @@ a:hover{
 	background-position: center bottom;
 	padding-top: 2px;
 }
-.leftnav ul li a:hover,.leftnav ul li.thisclass a{
+.adminNav ul li a:hover,.adminNav ul li.thisclass a{
 	color:#fff;
 	line-height:30px;
 	font-weight:bold;
