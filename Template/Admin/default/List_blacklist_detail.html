@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$tpltitle}后台用户</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/formValidator.js"></script>
+</head>
+	<body>
+		<table width="98%" border="0" cellpadding="4" cellspacing="1" class="table">
+			<tr class="table_title">
+				<td colspan="4">黑名单用户详细信息 (信息只能查看，不可编辑）</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">用户ID：</td>
+				<td colspan="3" class="lt">{$info.id}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">用户名称：</td>
+				<td colspan="3" class="lt">{$info.username}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">密　　码：</td>
+				<td colspan="3" class="lt">
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">用户描述：</td>
+				<td colspan="3" class="lt">{$info.remark}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">用户角色：</td>
+				<td colspan="3" class="lt">{$info.role}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">最后登录IP：</td>
+				<td colspan="3" class="lt">{$info.last_login_ip}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">最后登录位置：</td>
+				<td colspan="3" class="lt">{$info.last_location}
+				</td>
+			</tr>
+			<tr class="tr rt">
+				<td width="100">最后登录时间：</td>
+				<td colspan="3" class="lt">{:get_color_date('Y-m-d H:i:s', $info['last_login_time'])}
+				</td>
+			</tr>
+
+			<tr class="tr rt">
+				<td >用户状态：</td>
+				<td colspan="3" class="lt">
+					<input disabled type="radio" class="radio" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
+						启用
+						<input disabled type="radio" class="radio" value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
+						关闭
+				</td>
+			</tr>
+			<tr class="tr lt">
+				<td colspan="4">
+				<button type="button" onclick="javascript:history.back(-1);">返回</button>
+			</tr>
+		</table>
+<include file="Index:footer" />
+</body>
+</html>
