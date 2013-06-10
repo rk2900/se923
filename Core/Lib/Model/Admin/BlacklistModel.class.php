@@ -19,8 +19,9 @@ class BlacklistModel extends Model {
 	}
 
 	// 删除角色
-	public function delBlack($where) {
+	public function delBlack($where) { 
 		if($where){
+			
 			return $this->where($where)->delete();
 		}else{
 			return false;
@@ -35,5 +36,5 @@ class BlacklistModel extends Model {
 			return false;
 		}
 	}
-	
+
 }
