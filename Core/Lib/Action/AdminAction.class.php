@@ -16,6 +16,7 @@ class AdminAction extends CmsAction{
                 }
                 // 没有权限 抛出错误
                 if (C('RBAC_ERROR_PAGE')) {
+                    // echo RBAC_ERROR_PAGE;
                     // 定义权限错误页面
                     redirect(C('RBAC_ERROR_PAGE'));
                 } else {

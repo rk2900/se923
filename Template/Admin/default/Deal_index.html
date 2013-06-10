@@ -44,7 +44,7 @@
 				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
 				</td>
 				<td align='center'>
-					<a href="{:U('/Admin/Deal/readDetail/',array('id'=>$vo['deal_id']))}">修改</a>
+					<a href="{:U('/Admin/Deal/readDetail/',array('id'=>$vo['deal_id']))}">详情</a>
 					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Deal/del/',array('deal_id'=>$vo['deal_id']))}','确定删除该记录吗?')">删除</a></eq>
 				</td>
 			</tr>

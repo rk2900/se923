@@ -74,10 +74,10 @@ class DealAction extends AdminAction {
         // }else{
             $id = $this->_get('id','intval',0);
             if(!$id)$this->error('参数错误!');
-            // $role = D('Role')->getAllRole(array('status'=>1),'sort DESC');
+            $role = D('Role')->getAllRole(array('status'=>1),'sort DESC');
             $info = $DealDB->getDeal(array('id'=>$id));
             $this->assign('tpltitle','查看');
-            // $this->assign('role',$role);
+            $this->assign('role',$role);
             $this->assign('info',$info);
             $this->display('detail');
         // }

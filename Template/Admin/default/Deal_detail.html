@@ -22,19 +22,19 @@
 				<tr class="tr rt">
 					<td width="100">交易ID：</td>
 					<td colspan="3" class="lt">
-						<input type="text" name="username" id="username" style="width:200px" value="{$info.deal_id}" <eq name="info.username" value="$Think.config.SPECIAL_USER">readonly="readonly"</eq>>
+						{$info.deal_id}
 					</td>
 				</tr>
 				<tr class="tr rt">
 					<td width="100">买   家：</td>
 					<td colspan="3" class="lt">
-						<input type="text" name="buyer" id="buyer" style="width:200px" value="{$info.buyer}">
+						{$info.buyer}
 					</td>
 				</tr>
 				<tr class="tr rt">
 					<td width="100">卖    家：</td>
 					<td colspan="3" class="lt">
-						<input type="text" name="seller" id="seller" style="width:200px" value="{$info.seller}">
+						{$info.seller}
 					</td>
 				</tr>
 				<tr class="tr rt">
@@ -45,7 +45,7 @@
 								<option value="{$vo.id}" <eq name="vo.id" value="$info.role">selected=""</eq> >{$vo.name}</option>
 							</volist>
 						</select> -->
-						<input type="text" name="seller" id="seller" style="width:200px" value={:get_color_date('Y-m-d H:i:s', $info['time'])}>
+						{:get_color_date('Y-m-d H:i:s', $info['time'])}
 					</td>
 				</tr>
 				<tr class="tr rt">
@@ -62,7 +62,7 @@
 				<tr class="tr rt">
 					<td >备注说明：</td>
 					<td colspan="3" class="lt">
-						<input type="text" name="remark" id="remark" style="width:400px" value="{$info.about}">
+						{$info.about}
 					</td>
 				</tr>
 	<tr class="tr lt">
