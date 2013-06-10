@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 10, 2013 at 11:27 PM
+-- Generation Time: Jun 10, 2013 at 11:50 PM
 -- Server version: 5.6.10
 -- PHP Version: 5.3.15
 
@@ -15,7 +15,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
-
+-- DIRK XU
 --
 -- Database: `onlinepayment`
 --
@@ -189,15 +189,15 @@ CREATE TABLE IF NOT EXISTS `tp_blacklist` (
   `isblack` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `username` (`username`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='黑名单表' AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='黑名单表' AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `tp_blacklist`
 --
 
 INSERT INTO `tp_blacklist` (`id`, `username`, `password`, `role`, `status`, `remark`, `last_login_time`, `last_login_ip`, `last_location`, `isvip`, `isblack`) VALUES
-(12, 'yaya', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦', 1356967653, '127.0.0.1', '', 1, 1),
-(16, 'meimei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '圆得要死', 1357142930, '127.0.0.1', '', 0, 1);
+(15, 'yingying', 'e10adc3949ba59abbe56e057f20f883e', 4, 1, '胖胖胖', 1366967653, '127.0.0.1', '我不知道啊', 1, 1),
+(17, 'lele', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦啊啊啊啊', 1356967653, '127.0.0.1', '', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -406,10 +406,10 @@ INSERT INTO `tp_user` (`id`, `username`, `password`, `role`, `status`, `remark`,
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 1, 1, '神级管理员,可无视系统权限.', 1370877912, '0.0.0.0', 'IANA保留地址', 0, 0),
 (3, 'editor', '5aee9dbd2a188839105073571bee1b1f', 2, 1, '', 1356967653, '127.0.0.1', '', 0, 0),
 (10, 'leilei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '胖，圆', 1357142930, '127.0.0.1', '', 1, 0),
-(12, 'yaya', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦', 1356967653, '127.0.0.1', '', 1, 1),
-(15, 'yingying', 'e10adc3949ba59abbe56e057f20f883e', 4, 1, '胖胖胖', 1366967653, '127.0.0.1', '我不知道啊', 1, 0),
-(16, 'meimei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '圆得要死', 1357142930, '127.0.0.1', '', 0, 1),
-(17, 'lele', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦啊啊啊啊', 1356967653, '127.0.0.1', '', 0, 0),
+(12, 'yaya', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦', 1356967653, '127.0.0.1', '', 1, 0),
+(15, 'yingying', 'e10adc3949ba59abbe56e057f20f883e', 4, 1, '胖胖胖', 1366967653, '127.0.0.1', '我不知道啊', 1, 1),
+(16, 'meimei', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '圆得要死', 1357142930, '127.0.0.1', '', 0, 0),
+(17, 'lele', '5aee9dbd2a188839105073571bee1b1f', 4, 1, '瘦啊啊啊啊', 1356967653, '127.0.0.1', '', 0, 1),
 (18, 'hahaha', '21232f297a57a5a743894a0e4a801fc3', 4, 1, '圆啊啊啊', 1357142930, '127.0.0.1', '', 0, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
