@@ -13,9 +13,14 @@
 		<tr>
 			<td colspan="9" class="table_title">
 				<span class="fl">后台用户管理</span>
-				<span class="fr">
+				<form action="{:U('/Admin/User/search/')}" method="post" id="search">
+					<input type="text" name="sea">
+					<input type="submit" value="搜索">
+					<span class="fr">
 					<a href="{:U('/Admin/User/add')}">添加用户</a>
-				</span>
+					</span>
+				</form>
+				
 			</td>
 			<tr class="list_head ct">
 				<td width="70">ID</td>
@@ -26,6 +31,8 @@
 				<td width="150">最后登录位置</td>
 				<td width="150">最后登录时间</td>
 				<td width="70">状态</td>
+				<td width="70">VIP</td>
+				<td width="70">黑名单</td>
 				<td width="100">管理操作</td>
 			</tr>
 	    <volist name="list" id="vo">
@@ -39,8 +46,16 @@
 				<td align='center'>{:get_color_date('Y-m-d H:i:s', $vo['last_login_time'])}</td>
 				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
 				</td>
+				<td align='center'><eq name="vo.isvip" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				</td>
+				<td align='center'><eq name="vo.isblack" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				</td>
 				<td align='center'>
 					<a href="{:U('/Admin/User/edit/',array('id'=>$vo['id']))}">修改</a>
+					| <eq name="vo.isvip" value="0"><a href="{:U('/Admin/User/vip/',array('id'=>$vo['id']))}">设为VIP</a>
+					<else/><font color="#cccccc">设为VIP</font></eq>
+					| <eq name="vo.isblack" value="0"><a href="{:U('/Admin/User/black/',array('id'=>$vo['id']))}">列入黑名单</a>
+					<else/><font color="#cccccc">列入黑名单</font></eq>	
 					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/User/del/',array('id'=>$vo['id']))}','确定删除该用户吗?')">删除</a></eq>
 				</td>
 			</tr>

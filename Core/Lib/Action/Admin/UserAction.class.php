@@ -66,6 +66,116 @@ class UserAction extends AdminAction {
         }
     }
 
+    public function search(){
+        $string = $_POST['sea'];
+        import('ORG.Util.Page');// 导入分页类
+        $role = M('Role')->getField('id,name');
+        $map['username'] = array('like','%'.$string.'%');
+        $UserDB = D('User');
+        $count = $UserDB->where($map)->count();
+        $Page       = new Page($count);// 实例化分页类 传入总记录数
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $nowPage = isset($_GET['p'])?$_GET['p']:1;
+        $show       = $Page->show();// 分页显示输出
+        $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+        $this->assign('role',$role);
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display('index~');
+    }
+
+    public function vip(){
+        $RoleDB = D("User");
+        if(isset($_POST['dosubmit'])) {
+            //根据表单提交的POST数据创建数据对象
+            if($RoleDB->create()){
+                if($RoleDB->save()){
+                    $this->assign("jumpUrl",U('/Admin/User/role'));
+                    $this->success('编辑成功！');
+                }else{
+                     $this->error('编辑失败!');
+                }
+            }else{
+                $this->error($RoleDB->getError());
+            }
+        }else{
+            $id = $this->_get('id','intval',0);
+            if(!$id)$this->error('参数错误!');
+            $data['id']=$id;
+            $data['isvip']=1;
+            $RoleDB->save($data);
+
+            $map['id']=$id;
+            $record = $RoleDB->where($map)->find();
+
+            $Vip = M("List");
+            $Vip->create();
+            $Vip->add($record);
+
+            import('ORG.Util.Page');// 导入分页类
+            $role = M('Role')->getField('id,name');
+            $map = array();
+            $UserDB = D('User');
+            $count = $UserDB->where($map)->count();
+            $Page       = new Page($count);// 实例化分页类 传入总记录数
+            // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+            $nowPage = isset($_GET['p'])?$_GET['p']:1;
+            $show       = $Page->show();// 分页显示输出
+            $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+            $this->assign('role',$role);
+            $this->assign('list',$list);
+            $this->assign('page',$show);// 赋值分页输出
+            $this->display('index');
+        }
+    }
+
+    public function black(){
+        $RoleDB = D("User");
+        if(isset($_POST['dosubmit'])) {
+            //根据表单提交的POST数据创建数据对象
+            if($RoleDB->create()){
+                if($RoleDB->save()){
+                    $this->assign("jumpUrl",U('/Admin/User/role'));
+                    $this->success('编辑成功！');
+                }else{
+                     $this->error('编辑失败!');
+                }
+            }else{
+                $this->error($RoleDB->getError());
+            }
+        }else{
+            $id = $this->_get('id','intval',0);
+            if(!$id)$this->error('参数错误!');
+            $data['id']=$id;
+            $data['isblack']=1;
+            $RoleDB->save($data);
+
+            $map['id']=$id;
+            $record = $RoleDB->where($map)->find();
+            //var_dump($record);
+            //$data['username']=$record["username"];
+            $Vip = M("Blacklist");
+            $Vip->create();
+            $Vip->add($record);
+
+            import('ORG.Util.Page');// 导入分页类
+            $role = M('Role')->getField('id,name');
+            $map = array();
+            $UserDB = D('User');
+            $count = $UserDB->where($map)->count();
+            $Page       = new Page($count);// 实例化分页类 传入总记录数
+            // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+            $nowPage = isset($_GET['p'])?$_GET['p']:1;
+            $show       = $Page->show();// 分页显示输出
+            $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+            $this->assign('role',$role);
+            $this->assign('list',$list);
+            $this->assign('page',$show);// 赋值分页输出
+            $this->display('index');
+        }
+
+    }
+
     // 编辑用户
     public function edit(){
          $UserDB = D("User");
@@ -194,6 +304,8 @@ class UserAction extends AdminAction {
             $this->display('role_add');
         }
     }
+
+
 
     //删除角色
     public function role_del(){
