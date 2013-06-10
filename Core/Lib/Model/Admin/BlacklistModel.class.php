@@ -35,5 +35,5 @@ class BlacklistModel extends Model {
 			return false;
 		}
 	}
-
+	
 }

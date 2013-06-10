@@ -81,7 +81,7 @@ class UserAction extends AdminAction {
         $this->assign('role',$role);
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
-        $this->display('index~');
+        $this->display('index');
     }
 
     public function vip(){
