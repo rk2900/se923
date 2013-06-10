@@ -32,10 +32,21 @@ class AuthappealModel extends Model {
 		}
 	}
 
-	public function passAuthUser($data){
-		if($data){
-			$data['pass'] = '1';
-            return $this->save($data);
+	public function passAuthUser($where){
+		if($where){
+			
+		return $this->where($where)->setField('pass',2);
+			
+		}else{
+			return false;
+		}
+	}
+
+	public function refuseAuthUser($where){
+		if($where){
+			
+		return $this->where($where)->setField('pass',1);
+			
 		}else{
 			return false;
 		}

@@ -29,10 +29,17 @@ class AppealModel extends Model {
 
 	
 	
-	public function passAppealUser($data){
-		if($data){
-			$data['pass'] = '1';
-            return $this->save($data);
+	public function passAppealUser($where){
+		if($where){
+			return $this->where($where)->setField('pass',2);
+		}else{
+			return false;
+		}
+	}
+
+	public function refuseAppeal($where){
+		if($where){
+			return $this->where($where)->setField('pass',1);
 		}else{
 			return false;
 		}

@@ -37,8 +37,10 @@
 				
 				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
 				</td>
-				<td align='center'><eq name="vo.pass" value="0"><font color="blue">√</font><else/><font color="red">×</font></eq> 
+				<td align='center'><eq name="vo.pass" value="0"><font color="blue">未审核</font></eq><eq name="vo.pass" value="1"><font color="red">驳回</font></eq><eq name="vo.pass" value="2"><font color="red">通过</font></eq> 
 				<td align='center'>
+					<eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">驳回</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Authappeal/appeal_refuse/',array('id'=>$vo['id']))}','确定驳回该申诉消息吗?')">驳回</a></eq>
+					|
 					<eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">通过</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Authappeal/appeal_pass/',array('id'=>$vo['id']))}','确定通过该申诉消息吗?')">通过</a></eq>
 					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Authappeal/appeal_del/',array('id'=>$vo['id']))}','确定删除该申诉信息吗?')">删除</a></eq>
 				</td>

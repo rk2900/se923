@@ -38,6 +38,18 @@ class AuthappealAction extends AdminAction {
          }
      }
 
+ // 驳回
+     public function refuse(){
+        $id = $this->_get('id','intval',0);
+        if(!$id)$this->error('参数错误!');
+        $AuthDB = D('Authappeal');
+         if($AuthDB->refuseAuthUser('id='.$id)){
+             $this->assign("jumpUrl",U('/Admin/Authappeal/index'));
+             $this->success('驳回成功！');
+        }else{
+             $this->error('驳回失败!');
+         }
+     }
     
 
    //通过认证
@@ -46,6 +58,7 @@ class AuthappealAction extends AdminAction {
         if(!$id)$this->error('参数错误!');
         $AuthDB = D('Authappeal');
          if($AuthDB->passAuthUser('id='.$id)){
+
             
              $this->assign("jumpUrl",U('/Admin/Authappeal/index'));
              $this->success('认证成功！');
@@ -75,57 +88,71 @@ class AuthappealAction extends AdminAction {
      }
 
   
-//     // 编辑
-//      public function appeal_edit(){
-//           $AppealDB = D("Appeal");
-//          if(isset($_POST['dosubmit'])) {
-//              //根据表单提交的POST数据创建数据对象
-//              if($AppealDB->create()){
-//                  if($AppealDB->save()){
-//                      $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
-//                      $this->success('编辑成功！');
-//                  }else{
-//                       $this->error('编辑失败!');
-//                  }
-//              }else{
-//                  $this->error($AppealDB->getError());
-//              }
-//          }else{
-//              $id = $this->_get('id','intval',0);
-//              if(!$id)$this->error('参数错误!');
-//              $info = $RoleDB->getBlack(array('id'=>$id));
-//              $this->assign('tpltitle','编辑');
-//             $this->assign('info',$info);
-//              $this->display('appeal_del');
-//          }
-//      }
+    // // 编辑
+    //  public function appeal_edit(){
+    //       $AppealDB = D("Appeal");
+    //      if(isset($_POST['dosubmit'])) {
+    //          //根据表单提交的POST数据创建数据对象
+    //          if($AppealDB->create()){
+    //              if($AppealDB->save()){
+    //                  $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
+    //                  $this->success('编辑成功！');
+    //              }else{
+    //                   $this->error('编辑失败!');
+    //              }
+    //          }else{
+    //              $this->error($AppealDB->getError());
+    //          }
+    //      }else{
+    //          $id = $this->_get('id','intval',0);
+    //          if(!$id)$this->error('参数错误!');
+    //          $info = $RoleDB->getBlack(array('id'=>$id));
+    //          $this->assign('tpltitle','编辑');
+    //         $this->assign('info',$info);
+    //          $this->display('appeal_del');
+    //      }
+    //  }
 
-//     //删除
-//      public function appeal_del(){
-//         $id = $this->_get('id','intval',0);
-//          if(!$id)$this->error('参数错误!');
-//         $AppealDB = D('Appeal');
-//          if($AppealDB->delAppeal('id='.$id)){
-//              $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
-//              $this->success('删除成功！');
-//          }else{
-//              $this->error('删除失败!');
-//          }
-//      }
+    //删除
+     public function appeal_del(){
+        $id = $this->_get('id','intval',0);
+         if(!$id)$this->error('参数错误!');
+        $AppealDB = D('Appeal');
+         if($AppealDB->delAppeal('id='.$id)){
+             $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
+             $this->success('删除成功！');
+         }else{
+             $this->error('删除失败!');
+         }
+     }
 
-// //通过申诉
-//      public function appeal_pass(){
-//         $id = $this->_get('id','intval',0);
-//         if(!$id)$this->error('参数错误!');
-//         $AppealDB = D('Appeal');
-//          if($AppealDB->passAppealUser('id='.$id)){
+       //驳回
+     public function appeal_refuse(){
+        $id = $this->_get('id','intval',0);
+         if(!$id)$this->error('参数错误!');
+        $AppealDB = D('Appeal');
+         if($AppealDB->refuseAppeal('id='.$id)){
+             $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
+             $this->success('驳回成功！');
+         }else{
+             $this->error('驳回失败!');
+         }
+     }
+
+
+//通过申诉
+     public function appeal_pass(){
+        $id = $this->_get('id','intval',0);
+        if(!$id)$this->error('参数错误!');
+        $AppealDB = D('Appeal');
+         if($AppealDB->passAppealUser('id='.$id)){
             
-//              $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
-//              $this->success('认证成功！');
-//         }else{
-//              $this->error('认证失败!');
-//          }
-//      }
+             $this->assign("jumpUrl",U('/Admin/Authappeal/appeal'));
+             $this->success('认证成功！');
+        }else{
+             $this->error('认证失败!');
+         }
+     }
    
-	
+
 }
