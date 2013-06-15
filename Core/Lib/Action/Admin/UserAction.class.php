@@ -66,7 +66,7 @@ class UserAction extends AdminAction {
         }
     }
 
-    // 添加用户
+    // 添加普通用户
     public function normal_add(){
         $UserDB = D("User");
         if(isset($_POST['dosubmit'])) {
@@ -99,7 +99,7 @@ class UserAction extends AdminAction {
                 $this->error($UserDB->getError());
             }
         }else{
-            $role = D('Role')->getRole(array('status'=>1), 'role_id=4', 'sort DESC');
+            $role = D('Role')->getRole(array('status'=>1), 'role_id=4');
             $this->assign('role',$role);
             $this->assign('tpltitle','添加');
             $this->display();

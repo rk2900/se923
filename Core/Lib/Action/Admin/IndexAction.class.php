@@ -18,6 +18,7 @@ class IndexAction extends AdminAction {
         }
         $Model = new Model(); // 实例化一个model对象 没有对应任何数据表
         $main_menu = $Model->query($sql);
+        $this->assign('userid',session('userid'));
         $this->assign('main_menu',$main_menu);
         $this->display();
     }
