@@ -12,7 +12,7 @@ class UserAction extends AdminAction {
     public function index(){
         import('ORG.Util.Page');// 导入分页类
         $role = M('Role')->getField('id,name');
-        $map = array();
+        $map = 'role=4';//array();
         $UserDB = D('User');
         $count = $UserDB->where($map)->count();
         $Page       = new Page($count);// 实例化分页类 传入总记录数
@@ -60,6 +60,46 @@ class UserAction extends AdminAction {
             }
         }else{
             $role = D('Role')->getAllRole(array('status'=>1),'sort DESC');
+            $this->assign('role',$role);
+            $this->assign('tpltitle','添加');
+            $this->display();
+        }
+    }
+
+    // 添加用户
+    public function normal_add(){
+        $UserDB = D("User");
+        if(isset($_POST['dosubmit'])) {
+
+            $password = $_POST['password'];
+            $repassword = $_POST['repassword'];
+            if(empty($password) || empty($repassword)){
+                $this->error('密码必须！');
+            }
+            if($password != $repassword){
+                $this->error('两次输入密码不一致！');
+            }
+
+            //根据表单提交的POST数据创建数据对象
+            if($UserDB->create()){
+                $user_id = $UserDB->add();
+                if($user_id){
+                    $data['user_id'] = $user_id;
+                    $data['role_id'] = $_POST['role'];
+                    if (M("RoleUser")->data($data)->add()){
+                        $this->assign("jumpUrl",U('/Admin/User/index'));
+                        $this->success('添加成功！');
+                    }else{
+                        $this->error('用户添加成功,但角色对应关系添加失败!');
+                    }
+                }else{
+                     $this->error('添加失败!');
+                }
+            }else{
+                $this->error($UserDB->getError());
+            }
+        }else{
+            $role = D('Role')->getRole(array('status'=>1), 'role_id=4', 'sort DESC');
             $this->assign('role',$role);
             $this->assign('tpltitle','添加');
             $this->display();
@@ -481,5 +521,21 @@ class UserAction extends AdminAction {
         $this->success('设置成功！');
     }
 
+    public function all_index() {
+        import('ORG.Util.Page');// 导入分页类
+        $role = M('Role')->getField('id,name');
+        $map = array();
+        $UserDB = D('User');
+        $count = $UserDB->where($map)->count();
+        $Page       = new Page($count);// 实例化分页类 传入总记录数
+        // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
+        $nowPage = isset($_GET['p'])?$_GET['p']:1;
+        $show       = $Page->show();// 分页显示输出
+        $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+        $this->assign('role',$role);
+        $this->assign('list',$list);
+        $this->assign('page',$show);// 赋值分页输出
+        $this->display('index');
+    }
 	
 }
