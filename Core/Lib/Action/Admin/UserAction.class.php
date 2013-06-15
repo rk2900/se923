@@ -12,7 +12,7 @@ class UserAction extends AdminAction {
     public function index(){
         import('ORG.Util.Page');// 导入分页类
         $role = M('Role')->getField('id,name');
-        $map = 'role=4';//array();
+        $map = array();
         $UserDB = D('User');
         $count = $UserDB->where($map)->count();
         $Page       = new Page($count);// 实例化分页类 传入总记录数
