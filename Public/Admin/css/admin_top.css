@@ -92,7 +92,6 @@ a:hover{
 .adminNav ul li.navBorder{
 	width:10px;
 	height:30px;
-	background-image: url(../images/admin/top_nav_left.jpg);
 	background-repeat: no-repeat;
 	background-position: right bottom;
 }
@@ -114,7 +113,7 @@ a:hover{
 	width:74px;
 	text-align:center;
 	text-decoration: none;
-	background-image: url(../images/admin/top_nav_sr.gif);
+	background-image: url(../images/admin/top_nav_sr.jpg);
 	background-repeat: no-repeat;
 	background-position: center bottom;
 	padding-top: 2px;

@@ -1,21 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>左侧导航-{$Think.config.cms_name}</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_left.css'>
-  <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
-  <script language="javascript">
-  function show(url){
-    location.href = url;
-  }
+<title>左侧导航-{$Think.config.cms_name}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_left.css'>
+<script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
+
+<script language="javascript">
+function show(url){
+	location.href = url;
+}
 </script>
-  <base target="main" />
+<base target="main" />
 </head>
 <body>
-  <div class="menu">
+
+<div class="menu">
 {$sub_menu_html}
-  </div>
+</div>
+
 <script language="javascript">
 function showHide(id){
   $("#items"+id).toggleClass("none"); 

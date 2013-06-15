@@ -15,14 +15,13 @@ html{_overflow-y:scroll}
 </style>
 <script language="JavaScript1.2">if(self!=top){top.location=self.location;}</script> 
 </head>
-<body  scroll='no'  >
+<body  scroll='no'>
 
 
 <div class="topNav">
   <div class="siteNav">
-    <div class=welcome>您好：<span class="username">{$Think.session.username} </span>，欢迎使用{$Think.config.web_name}！ </div>
+    <div class=welcome>您好：<span class="username">{$Think.session.username}</span>，欢迎使用{$Think.config.web_name}！ </div>
     <div class=sitelink><a href="{:U('Admin/Index/Index')}" target="_parent">{$Think.config.web_name}首页</a> | <a href="{$Think.config.cms_url}" target="_blank">{$Think.config.cms_name}首页</a>
-    	<!-- | <a class="top-txt" href="{:U('Admin/Cache/delCore')}" target="frmright" id="delcache">更新缓存</a><a id="cache"></a> -->
     </div>
   </div>
   <div class="adminNav">
