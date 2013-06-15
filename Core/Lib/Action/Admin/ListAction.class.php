@@ -118,7 +118,7 @@ class ListAction extends AdminAction {
            $this->error('禁止删除此用户!');
         }
         if($ListDB->delUser('id='.$id)){
-                $UserDB=D('User');
+                $UserDB=D('Account');
                 $data['id']=$id;
                 $data['isvip']=0;
                 $UserDB->save($data);
@@ -207,7 +207,7 @@ class ListAction extends AdminAction {
         if(!$id)$this->error('参数错误!');
         $RoleDB = D('blacklist');
         if($RoleDB->delBlack('id='.$id)){
-            $UserDB=D('User');
+            $UserDB=D('Account');
             $data['id']=$id;
             $data['isblack']=0;
             $UserDB->save($data);
