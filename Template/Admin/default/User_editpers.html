@@ -74,9 +74,9 @@
 				<tr class="tr rt">
 					<td >用户状态：</td>
 					<td colspan="3" class="lt">
-						<input type="radio" class="radio" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
+						<input disabled type="radio" class="radio" value="1" name="status" id="status1" <if condition="($info.status eq 1) OR ($info['status'] eq '') ">checked=""</if> >
 							启用
-							<input type="radio" class="radio" value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
+							<input disabled type="radio" class="radio" value="0" name="status" id="status2" <eq name="info.status" value="0">checked=""</eq> >
 							关闭
 					</td>
 				</tr>
