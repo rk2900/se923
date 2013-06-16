@@ -376,16 +376,17 @@ class UserAction extends AdminAction {
                 $this->error($UserDB->getError());
             }
         }else{
-            $id = $this->_get('id','intval',0);
+            // $id = $this->_get('id','intval',0);
             // var_dump($id);
             $pid = session('userid');
-            if(!$id|| $pid!=$id)$this->error('参数错误!');
-            $role = D('Role')->getRole(array('id'=>$id),'sort DESC');
-            $info = $UserDB->getUser(array('id'=>$id));
+            // var_dump($pid);
+            // if(!$id|| $pid!=$id)$this->error('参数错误!');
+            $role = D('Role')->getRole(array('id'=>$pid));
+            $info = $UserDB->getUser(array('id'=>$pid));
             $this->assign('tpltitle','个人信息修改');
             $this->assign('role',$role);
             $this->assign('info',$info);
-            $this->display('add');
+            $this->display();
         }
     }
 
