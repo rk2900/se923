@@ -61,7 +61,7 @@ class UserAction extends AdminAction {
         }else{
             $role = D('Role')->getAllRole(array('status'=>1),'sort DESC');
             $this->assign('role',$role);
-            $this->assign('tpltitle','添加');
+            $this->assign('tpltitle','添加后台用户');
             $this->display();
         }
     }
@@ -336,10 +336,53 @@ class UserAction extends AdminAction {
             }
         }else{
             $id = $this->_get('id','intval',0);
+            // var_dump($id);
             if(!$id)$this->error('参数错误!');
             $role = D('Role')->getAllRole(array('status'=>1),'sort DESC');
             $info = $UserDB->getUser(array('id'=>$id));
-            $this->assign('tpltitle','编辑');
+            $this->assign('tpltitle','编辑后台用户');
+            $this->assign('role',$role);
+            $this->assign('info',$info);
+            $this->display('add');
+        }
+    }
+
+     public function editpers(){
+         $UserDB = D("User");
+        if(isset($_POST['dosubmit'])) {
+            $password = $_POST['password'];
+            $repassword = $_POST['repassword'];
+            if(!empty($password) || !empty($repassword)){
+                if($password != $repassword){
+                    $this->error('两次输入密码不一致！');
+                }
+                $_POST['password'] = md5($password);
+            }
+
+            if(empty($password) && empty($repassword)) unset($_POST['password']);   //不填写密码不修改
+
+            //根据表单提交的POST数据创建数据对象
+            if($UserDB->create()){
+                if($UserDB->save()){
+                    $where['user_id'] = $_POST['id'];
+                    $data['role_id'] = $_POST['role'];
+                    M("RoleUser")->where($where)->save($data);
+                    $this->assign("jumpUrl",U('/Admin/User/index'));
+                    $this->success('编辑成功！');
+                }else{
+                     $this->error('编辑失败!');
+                }
+            }else{
+                $this->error($UserDB->getError());
+            }
+        }else{
+            $id = $this->_get('id','intval',0);
+            // var_dump($id);
+            $pid = session('userid');
+            if(!$id|| $pid!=$id)$this->error('参数错误!');
+            $role = D('Role')->getRole(array('id'=>$id),'sort DESC');
+            $info = $UserDB->getUser(array('id'=>$id));
+            $this->assign('tpltitle','个人信息修改');
             $this->assign('role',$role);
             $this->assign('info',$info);
             $this->display('add');

@@ -17,11 +17,13 @@
 					<input type="text" name="sea">
 					<input type="submit" value="搜索">
 					<span class="fr">
+					<a href="{:U('/Admin/User/editpers/id/')}/{$Think.session.userid}">个人信息</a>
+					</span>
+					<span class="fr">
 					<a href="{:U('/Admin/User/add')}">添加用户</a>
 					</span>
 				</form>
-				
-			</td>
+							</td>
 			<tr class="list_head ct">
 				<td width="70">ID</td>
 				<td width="150">用户名称</td>
