@@ -20,13 +20,14 @@ html{_overflow-y:scroll}
 
 <div class="topNav">
   <div class="siteNav">
-    <div class=welcome>您好：<span class="username">{$Think.session.username}</span>，欢迎使用{$Think.config.web_name}！ </div>
+    <div class=welcome>您好：<span class="username">{$Think.session.username}</span>，欢迎使用{$Think.config.web_name}！</div>
     <div class=sitelink><a href="{:U('Admin/Index/Index')}" target="_parent">{$Think.config.web_name}首页</a> | <a href="{$Think.config.cms_url}" target="_blank">{$Think.config.cms_name}首页</a>
     </div>
   </div>
   <div class="adminNav">
     <ul>
       <li class="navBorder navBorderLeft"></li>
+	  
 <volist name="main_menu" id="vo">
 	<?php
 		if($i == 1){	//设置首菜单ID
