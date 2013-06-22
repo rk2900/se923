@@ -7,7 +7,7 @@ body{
 	color:#333333;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:12px;
-	height:76px;
+	height:100px;
 	overflow:hidden;
 	background:url(../images/admin/top_bg_hr.jpg) left top repeat-x;
 }
@@ -75,6 +75,8 @@ a:hover{
 	clear:both;
 	float:left;
 	margin-top:10px;
+	/* \9: IE6-8 */
+	margin-top:70px\9;
 	/*height:30px;*/
 	width:100%;
 }
