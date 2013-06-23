@@ -20,7 +20,7 @@ return array (
   'RBAC_NODE_TABLE' => 'tp_node',
   'SPECIAL_USER' => 'admin',
   'cms_name' => '在线支付系统',
-  'cms_url' => 'http://www.alipay.com',
+  'cms_url' => 'http://se.yiiqoo.com/soft/index.php/Hotel/search',
   'cms_var' => '1.0.2',
   'cms_admin' => 'index.php',
 );

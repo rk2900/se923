@@ -6,6 +6,44 @@
 <link rel='stylesheet' type='text/css' href='__PUBLIC__/Admin/css/admin_style.css' />
 <script type="text/javascript" src="__PUBLIC__/js/jquery.min.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/formValidator.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){
+			window.top.art.dialog({content:msg,lock:true,width:250,height:100,ok:function(){$(obj).focus();}});
+		}});
+		$("#account").formValidator({onshow:"请输入用户名",onfocus:"用户名至少3个字符,最多50个字符",oncorrect:"输入正确"}).inputValidator({min:3,empty:{leftempty:false,rightempty:false,emptyerror:"两边不能有空符号"},onerror:"你输入的用户名非法,请确认"})
+		    .ajaxValidator({
+			datatype : "json",
+			async : true,
+			type: "GET",
+			url : "{:U('/Admin/Account/check_username',array('userid'=>$info['id']))}",
+			success : function(data){
+	            if( data == "0" ){
+	            	return true;
+	            }else{
+	            	return false;
+	            }
+			},
+			error: function(){
+				window.top.art.dialog({content:"服务器没有返回数据，可能服务器忙，请重试",lock:true,width:250,height:100,ok:function(){}});
+			},
+			onerror : "该用户名已存在，请更换",
+			onwait : "用户名校验中..."
+		})<gt name="info.id" value="0">.defaultPassed()</gt>;
+
+		$("#phone").formValidator({empty:true,onshow:"请输入手机号码",onfocus:"手机号码必须是11位的",oncorrect:"手机号正确",onempty:"请输入手机号码"}).InputValidator({min:11,max:11,onerror:"手机号码必须是11位的，请确认"}).RegexValidator({regexp:"mobile",datatype:"enum",onerror:"你输入的手机号码格式不正确"});;
+
+
+		$("#loginpassword").formValidator({<gt name="info.id" value="0">empty:true,</gt>onshow:"请输入密码",onfocus:"至少6个长度",oncorrect:"密码合法"}).inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"密码两边不能有空符号"},onerror:"密码不能为空,请确认"});
+		$("#reloginpassword").formValidator({<gt name="info.id" value="0">empty:true,</gt>onshow:"输再次输入密码",onfocus:"至少6个长度",oncorrect:"密码一致"}).inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"重复密码两边不能有空符号"},onerror:"重复密码不能为空,请确认"}).compareValidator({desid:"loginpassword",operateor:"=",onerror:"两次密码不一致,请确认"});
+
+		$("#paypassword").formValidator({<gt name="info.id" value="0">empty:true,</gt>onshow:"请输入密码",onfocus:"至少6个长度",oncorrect:"密码合法"}).inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"密码两边不能有空符号"},onerror:"密码不能为空,请确认"});
+		$("#repaypassword").formValidator({<gt name="info.id" value="0">empty:true,</gt>onshow:"输再次输入密码",onfocus:"至少6个长度",oncorrect:"密码一致"}).inputValidator({min:6,empty:{leftempty:false,rightempty:false,emptyerror:"重复密码两边不能有空符号"},onerror:"重复密码不能为空,请确认"}).compareValidator({desid:"paypassword",operateor:"=",onerror:"两次密码不一致,请确认"});
+
+		$("#remark").formValidator({empty:true,onshow:"请输入你的描述"}).inputValidator({max:250,onerror:"描述不能超过250个字符,请确认"});
+	});
+</script>
+
 <!--<script type="text/javascript">
 	$(document).ready(function(){
 		$.formValidator.initConfig({formid:"myform",autotip:true,onerror:function(msg,obj){
@@ -51,6 +89,7 @@
 				<tr class="table_title">
 					<td colspan="4">{$tpltitle}普通用户</td>
 				</tr>
+
 				<tr class="tr rt">
 					<td width="100">account：</td>
 					<td colspan="3" class="lt">
@@ -66,16 +105,27 @@
 				<tr class="tr rt">
 					<td width="100">class：</td>
 					<td colspan="3" class="lt">
+
+						<input value="0" name="class" type="radio" >卖家
+						<input value="1" name="class" type="radio" >买家
+
+						<!--
 						<input type="text" name="class" id="class" style="width:200px" value="{$info.class}">
 						(1表示买家，0表示卖家)
+					-->
 					</td>
 				</tr>
 				<tr class="tr rt">
 					<td width="100">实名认证状态：</td>
 					<td colspan="3" class="lt">
+						<input value="0" name="realname" type="radio" >未认证，且未发起认证请求
+						<input value="1" name="realname" type="radio" >未认证，但已发起认证请求
+						<input value="2" name="realname" type="radio" >已认证
+						<!--
 						<input type="text" name="realname" id="realname" style="width:200px" value="{$info.realname}">
 						(0为进行实名认证,1已发起实名认证,2已实名认证)
 					</td>
+					-->
 				</tr>
 				<tr class="tr rt">
 					<td width="100">登陆密码：</td>
@@ -84,11 +134,25 @@
 					</td>
 				</tr>
 				<tr class="tr rt">
+					<td width="100">重复：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="reloginpassword" id="reloginpassword" style="width:200px" value="">
+					</td>
+				</tr>
+
+				<tr class="tr rt">
 					<td width="100">支付密码：</td>
 					<td colspan="3" class="lt">
 						<input type="text" name="paypassword" id="paypassword" style="width:200px" value="{$info.paypassword}">
 					</td>
 				</tr>
+				<tr class="tr rt">
+					<td width="100">重复：</td>
+					<td colspan="3" class="lt">
+						<input type="text" name="repaypassword" id="repaypassword" style="width:200px" value="">
+					</td>
+				</tr>
+
 				<tr class="tr rt">
 					<td width="100">phone：</td>
 					<td colspan="3" class="lt">
@@ -98,7 +162,13 @@
 				<tr class="tr rt">
 					<td width="100">gender：</td>
 					<td colspan="3" class="lt">
-						<input type="text" name="phone" id="phone" style="width:200px" value="{$info.phone}">
+						<input value="0" name="gender" type="radio" >女
+						<input value="1" name="gender" type="radio" >男
+
+						<!--
+						<input type="text" name="gender" id="gender" style="width:200px" value="{$info.gender}">
+						(1表示男，0表示女)
+					-->
 					</td>
 				</tr>
 				<tr class="tr rt">
@@ -113,13 +183,7 @@
 						<input type="text" name="address" id="adress" style="width:200px" value="{$info.address}">
 					</td>
 				</tr>
-				<tr class="tr rt">
-					<td width="100">gender：</td>
-					<td colspan="3" class="lt">
-						<input type="text" name="gender" id="gender" style="width:200px" value="{$info.gender}">
-						(1表示男，0表示女)
-					</td>
-				</tr>
+				
 	<tr class="tr lt">
 		<td colspan="4">
 			<gt name="info.id" value="0">
