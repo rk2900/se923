@@ -74,51 +74,66 @@ class AccountAction extends AdminAction {
     public function search(){
         $string = $_POST['sea'];
         import('ORG.Util.Page');// 导入分页类
-        $role = M('Role')->getField('id,name');
-        $map['username'] = array('like','%'.$string.'%');
+        // $role = M('Role')->getField('id,name');
+        // $map['account'] = array('like','%'.$string.'%');
+        // var_dump($map);
         $UserDB = D('Account');
-        $count = $UserDB->where($map)->count();
+        $temp='account like "%'.$string.'%"';
+        var_dump($temp);
+        $count = $UserDB->where($temp)->count();
+        // var_dump($count);
         $Page       = new Page($count);// 实例化分页类 传入总记录数
         // 进行分页数据查询 注意page方法的参数的前面部分是当前的页数使用 $_GET[p]获取
         $nowPage = isset($_GET['p'])?$_GET['p']:1;
         $show       = $Page->show();// 分页显示输出
-        $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
-        $this->assign('role',$role);
+        $list = $UserDB->where($temp)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
+        // $this->assign('role',$role);
+        // var_dump($list);
         $this->assign('list',$list);
         $this->assign('page',$show);// 赋值分页输出
         $this->display('index');
     }
 
     public function vip(){
-        $RoleDB = D("Account");
-        if(isset($_POST['dosubmit'])) {
-            //根据表单提交的POST数据创建数据对象
-            if($RoleDB->create()){
-                if($RoleDB->save()){
-                    $this->assign("jumpUrl",U('/Admin/Account/role'));
-                    $this->success('编辑成功！');
-                }else{
-                     $this->error('编辑失败!');
-                }
-            }else{
-                $this->error($RoleDB->getError());
-            }
-        }else{
+        
+        // if(isset($_POST['dosubmit'])) {
+        //     //根据表单提交的POST数据创建数据对象
+        //     if($RoleDB->create()){
+        //         if($RoleDB->save()){
+        //             $this->assign("jumpUrl",U('/Admin/Account/role'));
+        //             $this->success('编辑成功！');
+        //         }else{
+        //              $this->error('编辑失败!');
+        //         }
+        //     }else{
+        //         $this->error($RoleDB->getError());
+        //     }
+        // }else{
+            $RoleDB = M("Account");
             $id = $this->_get('id','intval',0);
             if(!$id)$this->error('参数错误!');
             $data['id']=$id;
-            $data['isvip']=1;
-            $RoleDB->save($data);
+            $data['vip']=1;
+            $conn = mysql_connect("localhost","root","62771115xbb");
+            if (!$conn)
+              {
+              die('Could not connect: ' . mysql_error());
+              }
 
+            mysql_select_db("sb", $conn);
+            $query='update tp_account set vip=1 where id='.$id;
+            mysql_query($query);
+            // $RoleDB->save($data);//setField(array('vip'=>1));
+            var_dump($query);
             $map['id']=$id;
             $record = $RoleDB->where($map)->find();
-
+            // var_dump($record);
             $Vip = M("List");
             $Vip->create();
             $Vip->add($record);
 
             import('ORG.Util.Page');// 导入分页类
-            $role = M('Role')->getField('id,name');
+            // $role = M('Role')->getField('id,name');
             $map = array();
             $UserDB = D('Account');
             $count = $UserDB->where($map)->count();
@@ -127,11 +142,11 @@ class AccountAction extends AdminAction {
             $nowPage = isset($_GET['p'])?$_GET['p']:1;
             $show       = $Page->show();// 分页显示输出
             $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
-            $this->assign('role',$role);
+            // $this->assign('role',$role);
             $this->assign('list',$list);
             $this->assign('page',$show);// 赋值分页输出
             $this->display('index');
-        }
+        // }
     }
 
     public function rmvip(){
@@ -152,7 +167,7 @@ class AccountAction extends AdminAction {
             $id = $this->_get('id','intval',0);
             if(!$id)$this->error('参数错误!');
             $data['id']=$id;
-            $data['isvip']=0;
+            $data['vip']=0;
             $RoleDB->save($data);
 
             $map['id']=$id;
@@ -163,7 +178,7 @@ class AccountAction extends AdminAction {
             //$Vip->add($record);
 
             import('ORG.Util.Page');// 导入分页类
-            $role = M('Role')->getField('id,name');
+            // $role = M('Role')->getField('id,name');
             $map = array();
             $UserDB = D('Account');
             $count = $UserDB->where($map)->count();
@@ -172,7 +187,7 @@ class AccountAction extends AdminAction {
             $nowPage = isset($_GET['p'])?$_GET['p']:1;
             $show       = $Page->show();// 分页显示输出
             $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
-            $this->assign('role',$role);
+            // $this->assign('role',$role);
             $this->assign('list',$list);
             $this->assign('page',$show);// 赋值分页输出
             $this->display('index');
@@ -197,7 +212,7 @@ class AccountAction extends AdminAction {
             $id = $this->_get('id','intval',0);
             if(!$id)$this->error('参数错误!');
             $data['id']=$id;
-            $data['isblack']=1;
+            $data['black']=1;
             $RoleDB->save($data);
 
             $map['id']=$id;
@@ -209,7 +224,7 @@ class AccountAction extends AdminAction {
             $Vip->add($record);
 
             import('ORG.Util.Page');// 导入分页类
-            $role = M('Role')->getField('id,name');
+            // $role = M('Role')->getField('id,name');
             $map = array();
             $UserDB = D('Account');
             $count = $UserDB->where($map)->count();
@@ -218,7 +233,7 @@ class AccountAction extends AdminAction {
             $nowPage = isset($_GET['p'])?$_GET['p']:1;
             $show       = $Page->show();// 分页显示输出
             $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
-            $this->assign('role',$role);
+            // $this->assign('role',$role);
             $this->assign('list',$list);
             $this->assign('page',$show);// 赋值分页输出
             $this->display('index');
@@ -243,7 +258,7 @@ class AccountAction extends AdminAction {
             $id = $this->_get('id','intval',0);
             if(!$id)$this->error('参数错误!');
             $data['id']=$id;
-            $data['isblack']=0;
+            $data['black']=0;
             $RoleDB->save($data);
 
             $map['id']=$id;
@@ -254,7 +269,7 @@ class AccountAction extends AdminAction {
             $Vip->where($map)->delete();
 
             import('ORG.Util.Page');// 导入分页类
-            $role = M('Role')->getField('id,name');
+            // $role = M('Role')->getField('id,name');
             $map = array();
             $UserDB = D('Account');
             $count = $UserDB->where($map)->count();
@@ -263,7 +278,7 @@ class AccountAction extends AdminAction {
             $nowPage = isset($_GET['p'])?$_GET['p']:1;
             $show       = $Page->show();// 分页显示输出
             $list = $UserDB->where($map)->order('id ASC')->page($nowPage.','.C('web_admin_pagenum'))->select();
-            $this->assign('role',$role);
+            // $this->assign('role',$role);
             $this->assign('list',$list);
             $this->assign('page',$show);// 赋值分页输出
             $this->display('index');
@@ -276,21 +291,21 @@ class AccountAction extends AdminAction {
         if(isset($_POST['dosubmit'])) {
             $password = $_POST['password'];
             $repassword = $_POST['repassword'];
-            if(!empty($password) || !empty($repassword)){
-                if($password != $repassword){
-                    $this->error('两次输入密码不一致！');
-                }
-                $_POST['password'] = md5($password);
-            }
+            // if(!empty($password) || !empty($repassword)){
+            //     if($password != $repassword){
+            //         $this->error('两次输入密码不一致！');
+            //     }
+            //     $_POST['password'] = md5($password);
+            // }
 
-            if(empty($password) && empty($repassword)) unset($_POST['password']);   //不填写密码不修改
+            // if(empty($password) && empty($repassword)) unset($_POST['password']);   //不填写密码不修改
 
             //根据表单提交的POST数据创建数据对象
             if($UserDB->create()){
                 if($UserDB->save()){
-                    $where['user_id'] = $_POST['id'];
-                    $data['role_id'] = $_POST['role'];
-                    M("RoleUser")->where($where)->save($data);
+                    $where['id'] = $_POST['id'];
+                    // $data['role_id'] = $_POST['role'];
+                    M("Account")->where($where)->save($data);
                     $this->assign("jumpUrl",U('/Admin/Account/index'));
                     $this->success('编辑成功！');
                 }else{

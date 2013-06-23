@@ -24,37 +24,32 @@
 			</td>
 			<tr class="list_head ct">
 				<td width="70">ID</td>
-				<td width="150">用户名称</td>
-				<td width="150">角色名称</td>
-				<td >用户描述</td>
-				<td width="100">最后登录IP</td>
-				<td width="150">最后登录位置</td>
-				<td width="150">最后登录时间</td>
-				<td width="70">状态</td>
-				<td width="70">VIP</td>
+				<td width="150">account</td>
+				<td width="150">username</td>
+				<td width="70">类别</td>
+				<td> gender</td>
+				<td width="70">VIP level</td>
 				<td width="70">黑名单</td>
-				<td width="100">管理操作</td>
+				<td width="150">管理操作</td>
 			</tr>
 	    <volist name="list" id="vo">
 			<tr class='<eq name="mod" value="1">tr<else/>ji</eq>'>
 				<td align='center'>{$vo.id}</td>
-				<td >{$vo.username}</td>
-				<td >{$role[$vo['role']]}</td>
-				<td >{$vo.remark}</td>
-				<td align='center'>{$vo.last_login_ip}</td>
-				<td align='center'>{$vo.last_location}</td>
-				<td align='center'>{:get_color_date('Y-m-d H:i:s', $vo['last_login_time'])}</td>
-				<td align='center'><eq name="vo.status" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				<td align='center'>{$vo.account}</td>
+				<td align='center'>{$vo.username}</td>
+				<td align='center'><eq name="vo.class" value="1"><font color="red">卖家</font><else/><font color="blue">买家</font></eq> 
 				</td>
-				<td align='center'><eq name="vo.isvip" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				<td align='center'><eq name="vo.gender" value="0"><font color="red">女</font><else/><font color="blue">男</font></eq> 
 				</td>
-				<td align='center'><eq name="vo.isblack" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
+				<td align='center'><eq name="vo.vip" value="0"><font color="red">×</font><else/><font color="blue">{$vo.vip}</font></eq> 
+				</td>
+				<td align='center'><eq name="vo.black" value="1"><font color="red">√</font><else/><font color="blue">×</font></eq> 
 				</td>
 				<td align='center'>
-					<a href="{:U('/Admin/Account/edit/',array('id'=>$vo['id']))}">修改</a>
-					| <eq name="vo.isvip" value="0"><a href="{:U('/Admin/Account/vip/',array('id'=>$vo['id']))}">设为VIP</a>
+					<a href="{:U('/Admin/Account/edit/',array('id'=>$vo['id']))}">查看或修改详细信息</a>
+					| <eq name="vo.vip" value="0"><a href="{:U('/Admin/Account/vip/',array('id'=>$vo['id']))}">设为VIP</a>
 					<else/><a href="{:U('/Admin/Account/rmvip/',array('id'=>$vo['id']))}"><font color="#cccccc">取消VIP</font></a></eq>
-					| <eq name="vo.isblack" value="0"><a href="{:U('/Admin/Account/black/',array('id'=>$vo['id']))}">加入黑名单</a>
+					| <eq name="vo.black" value="0"><a href="{:U('/Admin/Account/black/',array('id'=>$vo['id']))}">加入黑名单</a>
 					<else/><a href="{:U('/Admin/Account/rmblack/',array('id'=>$vo['id']))}"><font color="#cccccc">取消黑名单</font></a></eq>	
 					| <eq name="vo.username" value="$Think.config.SPECIAL_USER"><font color="#cccccc">删除</font><else/><a href="javascript:void(0)" onclick="return confirmurl('{:U('/Admin/Account/del/',array('id'=>$vo['id']))}','确定删除该用户吗?')">删除</a></eq>
 				</td>
